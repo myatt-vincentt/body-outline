@@ -9,8 +9,9 @@ shown**, with a **rainbow outline** around their body, lively enough for dancing
 - **Outline:** rainbow, with **motion echoes** (fading copies trail behind movement), a **pulse
   with movement** (thicker and brighter the faster you move) and **sparkles** drifting off the
   edge.
-- **Preview:** the user's dance clip (`dev-media/dancing-woman.mp4`, 1080×1920, 22 s) is the
-  default in the dev media switcher, listed alongside the SDK samples. It lives outside `public/`
+- **Preview:** the dev media switcher starts on the SDK's built-in "Person Fullbody" video, so a
+  fresh clone needs no clip. The user's dance clip (`dev-media/dancing-woman.mp4`, 1080×1920,
+  22 s) is optional: when present it is listed first and used instead. It lives outside `public/`
   (and `src/`), so it never ships, and is git-ignored (licence not cleared for a public repo).
 
 ## Composition (SDK portrait segmentation, `docs/api/person-cutout.mdx`)
@@ -56,9 +57,11 @@ The outline layer is a custom plane, not a `ScreenImage`, because it reads GPU r
 
 ## Dev preview
 
-`DevMediaSwitcher.tsx` (adapted from my-emoji-shadow; dev-only, stripped from production) starts on
-the dance clip when there is no webcam, and also lists every SDK sample video and image plus the
-webcam.
+`DevMediaSwitcher.tsx` (adapted from my-emoji-shadow; dev-only, stripped from production) takes over
+when there is no webcam: it starts on the local dance clip if `dev-media/` has one, otherwise on the
+SDK's "Person Fullbody" video, and lists every SDK sample video and image plus the webcam. The clip
+is loaded by a glob-style dynamic import, so a missing file only gives an esbuild "empty-glob"
+warning; the lookup then throws synchronously, so the import runs inside a `.then`.
 
 ## Production
 

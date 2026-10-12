@@ -3,8 +3,9 @@
 You on a dimmed camera background, traced by a rainbow outline that pulses with your movement,
 leaves fading echoes and throws sparkles — built for dancing.
 
-- Dev preview without a camera: the media switcher (☰) starts on the dance clip in `dev-media/` (git-ignored; see `dev-media/README.md`)
-  (never shipped) and offers the SDK's sample videos and images.
+- Dev preview without a camera: the media switcher (☰) starts on the SDK's built-in "Person
+  Fullbody" video, with every SDK sample to pick from. Nothing to download. Optionally drop your
+  own clip at `dev-media/dancing-woman.mp4` (git-ignored, never shipped; see `dev-media/README.md`).
 - Tuning: `src/outline/config.ts`. How it works: `PLAN.md`.
 
 ---
